@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kims Auto Body — Policy Reference</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1a1a1a;
+    --dark: #2d2d2d;
+    --mid: #555;
+    --muted: #888;
+    --border: #e0e0e0;
+    --bg: #ffffff;
+    --bg-soft: #f8f8f8;
+    --bg-card: #ffffff;
+    --accent: #1a1a1a;
+    --accent-light: #f0f0f0;
+    --amber: #d4870a;
+    --amber-light: #fdf3e3;
+    --red: #c0392b;
+    --red-light: #fdf0ee;
+    --green: #1e7e45;
+    --green-light: #edf7f1;
+    --blue: #1a56a0;
+    --blue-light: #eef3fc;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--black);
+    font-family: 'Google Sans Text', 'Roboto', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--black);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .topbar-logo {
+    background: white;
+    color: var(--black);
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .topbar-title {
+    color: white;
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .topbar-sub {
+    margin-left: auto;
+    color: #999;
+    font-size: 12px;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav-tabs a {
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 14px 18px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+    letter-spacing: 0.2px;
+  }
+
+  .nav-tabs a:hover {
+    color: var(--black);
+    border-bottom-color: var(--black);
+  }
+
+  /* PAGE */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+
+  /* SECTION */
+  section {
+    margin-bottom: 56px;
+    scroll-margin-top: 100px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header h2 {
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.2px;
+  }
+
+  .section-header span {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* STAT ROW */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .stat {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat .num {
+    display: block;
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--black);
+    line-height: 1.1;
+  }
+
+  .stat .label {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* CARDS */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+  }
+
+  .card h3 {
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card h3 .icon {
+    width: 20px;
+    height: 20px;
+    background: var(--accent-light);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+
+  .card ul {
+    padding-left: 16px;
+  }
+
+  .card li {
+    margin-bottom: 5px;
+    color: var(--dark);
+    line-height: 1.55;
+  }
+
+  .card p {
+    color: var(--dark);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  .card p:last-child { margin-bottom: 0; }
+
+  /* ALERTS */
+  .alert {
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-size: 13.5px;
+    margin-bottom: 16px;
+    line-height: 1.55;
+    border: 1px solid;
+  }
+
+  .alert-warn { background: var(--amber-light); border-color: #f0c070; color: #7a4f00; }
+  .alert-danger { background: var(--red-light); border-color: #f0b0a8; color: #7a1a10; }
+  .alert-info { background: var(--blue-light); border-color: #aac4e8; color: #0d3a70; }
+  .alert-green { background: var(--green-light); border-color: #9dd6b8; color: #0d4a28; }
+
+  .alert strong { font-weight: 600; }
+
+  /* TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .data-table th {
+    background: var(--bg-soft);
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--dark);
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--bg-soft); }
+
+  /* DIVIDER */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 16px 0;
+  }
+
+  /* TWO COL */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  /* STEP LIST */
+  .step-list {
+    list-style: none;
+    counter-reset: steps;
+  }
+
+  .step-list li {
+    counter-increment: steps;
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+
+  .step-list li::before {
+    content: counter(steps);
+    background: var(--black);
+    color: white;
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* CONTACT CARDS */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .contact-card {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px;
+  }
+
+  .contact-card .role {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .contact-card .name {
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .contact-card a {
+    display: block;
+    font-size: 13px;
+    color: var(--blue);
+    text-decoration: none;
+    margin-bottom: 2px;
+  }
+
+  .contact-card a:hover { text-decoration: underline; }
+
+  /* HERO */
+  .hero {
+    background: var(--black);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+  }
+
+  .hero p {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 4px;
+  }
+
+  .hero-badge {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 10px 16px;
+    text-align: right;
+  }
+
+  .hero-badge span {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+  }
+
+  .hero-badge strong {
+    display: block;
+    font-family: 'Google Sans', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    margin-top: 2px;
+  }
+
+  /* TAG */
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+  .tag-red { background: var(--red-light); color: var(--red); }
+  .tag-green { background: var(--green-light); color: var(--green); }
+  .tag-amber { background: var(--amber-light); color: var(--amber); }
+
+  @media (max-width: 680px) {
+    .two-col { grid-template-columns: 1fr; }
+    main { padding: 24px 16px 60px; }
+    .nav-tabs { padding: 0 16px; }
+    .topbar { padding: 12px 16px; }
+    .hero { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">K/B</div>
+  <div class="topbar-title">Kims Auto Body — Policy Reference</div>
+  <div class="topbar-sub">Updated April 2026</div>
+</div>
+
+<nav class="nav-tabs">
+  <a href="#hours-pay">Hours & Pay</a>
+  <a href="#pto">Time Off & PTO</a>
+  <a href="#benefits">Benefits</a>
+  <a href="#conduct">Conduct</a>
+  <a href="#training">Training</a>
+  <a href="#contacts">Contacts</a>
+</nav>
+
+<main>
+
+  <div class="hero">
+    <div>
+      <h1>Employee Quick Reference</h1>
+      <p>Key policies from the employee handbook — all in one place.</p>
+    </div>
+    <div class="hero-badge">
+      <span>Handbook Date</span>
+      <strong>April 21, 2026</strong>
+    </div>
+  </div>
+
+  <!-- HOURS & PAY -->
+  <section id="hours-pay">
+    <div class="section-header">
+      <h2>Hours & Pay</h2>
+      <span>Timekeeping · Overtime · Payroll</span>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="num">Mon–Fri</span>
+        <span class="label">Business Days</span>
+      </div>
+      <div class="stat">
+        <span class="num">8am–5pm</span>
+        <span class="label">Shop Hours</span>
+      </div>
+      <div class="stat">
+        <span class="num">40 hrs</span>
+        <span class="label">Standard Week</span>
+      </div>
+      <div class="stat">
+        <span class="num">Weekly</span>
+        <span class="label">Pay Schedule</span>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="icon">🕐</span> Timekeeping</h3>
+        <ul>
+          <li>Clock in and out every shift — report missed punches to HR immediately</li>
+          <li>Verify your timecard accuracy by <strong>Tuesday before payday</strong></li>
+          <li>All work time must be logged, including device use for work tasks</li>
+          <li>Never clock in for another employee — falsifying records may result in termination</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon">⏱</span> Overtime Rules</h3>
+        <ul>
+          <li><strong>All overtime must be pre-approved</strong> by your supervisor</li>
+          <li>1.5× pay for hours over 8/day or 40/week</li>
+          <li>2× pay (double time) for hours over 12 in a single day</li>
+          <li>Special rates apply on the 7th consecutive workday</li>
+          <li>Unauthorized overtime is subject to disciplinary action</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon">🍽</span> Meals & Breaks</h3>
+        <ul>
+          <li><strong>15-min paid breaks</strong> required every 4 hours (your responsibility to take)</li>
+          <li><strong>30-min unpaid lunch</strong> required if you work 5+ hours</li>
+          <li>If working 6+ hours, lunch must be taken <strong>by the 5th hour</strong></li>
+          <li>Suggested lunch window: 11:30 AM – 1:00 PM</li>
+          <li>Second meal break required for shifts over 10 hours</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon">💵</span> Paydays</h3>
+        <ul>
+          <li>Paid <strong>weekly</strong></li>
+          <li>If payday falls on a holiday, you'll be paid the day before</li>
+          <li>Paychecks only released to the employee (written authorization required for others)</li>
+          <li>Direct deposit available — you'll receive an itemized wage statement</li>
+          <li>Questions about deductions? Contact HR/Finance immediately</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert alert-warn" style="margin-top:16px;">
+      <strong>Attendance:</strong> Contact your supervisor directly <em>before</em> your shift if you'll be absent. Voicemail/text is only acceptable in extreme emergencies, and a follow-up call must be made the same day. No-call for 3 consecutive days is treated as voluntary resignation.
+    </div>
+  </section>
+
+  <!-- TIME OFF & PTO -->
+  <section id="pto">
+    <div class="section-header">
+      <h2>Time Off & PTO</h2>
+      <span>Accrual · Holidays · Protected Leave</span>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="num">64 hrs</span>
+        <span class="label">PTO/Year (Start)</span>
+      </div>
+      <div class="stat">
+        <span class="num">50 hrs</span>
+        <span class="label">Max Carryover</span>
+      </div>
+      <div class="stat">
+        <span class="num">40 hrs</span>
+        <span class="label">Year-End Cash Out</span>
+      </div>
+      <div class="stat">
+        <span class="num">90 hrs</span>
+        <span class="label">Max Balance</span>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:14px;">
+      <div class="card">
+        <h3><span class="icon">📈</span> PTO by Years of Service</h3>
+        <table class="data-table" style="margin-top:4px;">
+          <thead>
+            <tr><th>Milestone</th><th>Max PTO / Year</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Starting</td><td>64 hours</td></tr>
+            <tr><td>3 Years</td><td>72 hours</td></tr>
+            <tr><td>6 Years</td><td>80 hours</td></tr>
+            <tr><td>10 Years</td><td>90 hours</td></tr>
+          </tbody>
+        </table>
+        <hr>
+        <p style="font-size:13px;">Accrual rate: <strong>1 PTO hour per 27.40 hours worked.</strong> Full-time employees also receive 16 hours upfront at the start of each year.</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">📋</span> PTO Rules at a Glance</h3>
+        <ul>
+          <li><strong>Full day off:</strong> Request at least 1 week in advance</li>
+          <li><strong>Partial day:</strong> 48-hour notice required</li>
+          <li><strong>Sick/emergency:</strong> Notify supervisor ASAP; call again each additional day out</li>
+          <li><strong>Cash out:</strong> Up to 40 hrs on last paycheck of the year only</li>
+          <li><strong>Advance PTO:</strong> Up to 16 hrs from next quarter with manager approval</li>
+          <li>PTO can only be used to fill missed hours in a regular 40-hr week</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="icon">🎉</span> 9 Paid Holidays</h3>
+        <ul>
+          <li>New Year's Day</li>
+          <li>President's Day</li>
+          <li>Memorial Day</li>
+          <li>Independence Day</li>
+          <li>Labor Day</li>
+          <li>Thanksgiving Day</li>
+          <li>Day after Thanksgiving</li>
+          <li>Christmas Eve</li>
+          <li>Christmas Day</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon">🛡</span> Other Protected Leave (CA)</h3>
+        <ul>
+          <li><strong>Sick Leave:</strong> Up to 40 hrs/yr (usable after 90 days)</li>
+          <li><strong>Bereavement:</strong> Up to 24 paid hrs (immediate family) / 8 paid hrs (extended family)</li>
+          <li><strong>Jury Duty:</strong> Unpaid; may use PTO. Provide summons to supervisor ASAP</li>
+          <li><strong>Military Leave:</strong> Unpaid; reemployment rights protected up to 5 years</li>
+          <li><strong>Pregnancy Disability:</strong> Up to 4 months leave</li>
+          <li><strong>Paid Family Leave:</strong> Up to 6 weeks (CA state benefit)</li>
+          <li><strong>Voting:</strong> Up to 2 hrs paid on Election Day if needed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <div class="section-header">
+      <h2>Benefits</h2>
+      <span>Health · Retirement · Workers' Comp · Referral</span>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="icon">🏥</span> Health Insurance</h3>
+        <p>Eligible after your <strong>first 60 days</strong> — coverage begins the 1st of the following month.</p>
+        <hr>
+        <ul>
+          <li>KAB covers <strong>50% of your monthly medical premium</strong></li>
+          <li>KAB covers <strong>$25/month toward dental</strong></li>
+          <li>Adding a spouse or dependents: KAB covers <strong>25%</strong>, employee pays the rest</li>
+        </ul>
+        <p style="margin-top:10px;font-size:12px;color:var(--muted)">Contact HR for plan details and enrollment forms.</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">💼</span> Retirement Plan</h3>
+        <p>Full-time employees are eligible to enroll in the company-sponsored retirement plan after <strong>365 days of employment</strong>.</p>
+        <hr>
+        <p style="font-size:13px;">Review the Summary Plan Description (SPD) for full details. Contact HR/Finance for plan documents.</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">🦺</span> Workers' Compensation</h3>
+        <p>If you're injured on the job, you're covered — <strong>at no cost to you</strong>. Covers medical treatment and a portion of lost wages.</p>
+        <hr>
+        <ul>
+          <li>Report all injuries to your supervisor <strong>immediately</strong></li>
+          <li>Supervisor contacts HR to get claim forms</li>
+          <li>No enrollment required — automatic coverage</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">👥</span> Employee Referral Bonus</h3>
+        <p>Refer a qualified candidate who gets hired and completes <strong>90 days</strong> of employment and you earn a <strong>$500 bonus</strong>.</p>
+        <hr>
+        <p style="font-size:13px;">All referred candidates go through the standard hiring process. Direct questions to HR.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONDUCT -->
+  <section id="conduct">
+    <div class="section-header">
+      <h2>Conduct & Workplace Rules</h2>
+      <span>Standards · Discipline · Dress Code · Safety</span>
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>Zero Tolerance — Immediate Termination:</strong> Workplace violence, harassment, theft of any kind, working for a competitor, vandalism, unauthorized use of company vehicles/equipment, and divulging confidential company information.
+    </div>
+
+    <div class="card-grid" style="margin-top:14px;">
+      <div class="card">
+        <h3><span class="icon">✅</span> Standards We Hold</h3>
+        <ul>
+          <li>Act and dress professionally at all times</li>
+          <li>Always be courteous and respectful to customers and partners</li>
+          <li>Keep your work area clean and organized</li>
+          <li>Respect coworkers' space, tools, and property</li>
+          <li>Take pride in your work and own your mistakes</li>
+          <li>Personal calls taken on breaks, outside the production area</li>
+          <li>Follow KAB Standard Operating Procedures</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">⚠️</span> Disciplinary Process</h3>
+        <ol class="step-list">
+          <li><strong>Warning #1</strong> — Documented; sit-down with plan of resolution</li>
+          <li><strong>Warning #2</strong> — Documented; revised plan. Employee signs acknowledgment that next incident leads to suspension</li>
+          <li><strong>Suspension & Probation</strong> — Unpaid suspension; 30-day probation after return</li>
+          <li><strong>Termination</strong> — All company property returned within 48 hrs; final check issued after return</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">👔</span> Dress Code</h3>
+        <p><strong>Production team:</strong> Provided 10 shirts + 5 pants. Keep uniforms clean and report issues immediately.</p>
+        <p><strong>Office team:</strong> Business casual — polos, button-downs, slacks, dark jeans, closed-toe shoes. Bottoms past the knee; tops covering shoulders and back.</p>
+        <hr>
+        <p style="font-size:12.5px;color:var(--red);"><strong>Not allowed:</strong> light-wash jeans, torn jeans, t-shirts, hoodies, open-toe shoes, leggings/yoga pants.</p>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">🔧</span> Tools & Equipment</h3>
+        <ul>
+          <li>You are responsible for all tools assigned to you</li>
+          <li>Lost or damaged tools due to negligence are deducted from your paycheck</li>
+          <li>Shared tools: cost split among responsible parties (or whole team if no one identified)</li>
+          <li>Normal wear and tear is covered by KAB</li>
+          <li>No tools or supplies may leave the shop without manager permission</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">🚭</span> Drugs, Alcohol & Smoking</h3>
+        <ul>
+          <li>Zero tolerance for alcohol or illegal drugs on company property or while on company business</li>
+          <li>Prescription medications are OK — notify supervisor if they may impair your performance</li>
+          <li>Smoke-free workplace: no smoking, vaping, or e-cigarettes anywhere on premises</li>
+          <li>Random drug/alcohol testing may be required</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><span class="icon">🚨</span> Harassment & Reporting</h3>
+        <p>Harassment of any kind — sexual, racial, or otherwise — is strictly prohibited and grounds for termination.</p>
+        <hr>
+        <p><strong>How to report:</strong> Tell your supervisor, or contact Alicia (HR) or James Kim directly. Retaliation against anyone who reports is also prohibited.</p>
+        <p style="margin-top:8px;font-size:12.5px;color:var(--muted)">CA employees may also file with DFEH at (800) 884-1684 or dfeh.ca.gov.</p>
+      </div>
+    </div>
+
+    <div class="alert alert-warn" style="margin-top:14px;">
+      <strong>Loyalty Policy:</strong> Employees may not work for any competitor of KAB. Violation results in immediate termination.
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section id="training">
+    <div class="section-header">
+      <h2>Training & Development</h2>
+      <span>I-CAR · Credits · Meetings</span>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="num">$500</span>
+        <span class="label">Annual Training Credit</span>
+      </div>
+      <div class="stat">
+        <span class="num">6 mo.</span>
+        <span class="label">Complete Initial Training</span>
+      </div>
+      <div class="stat">
+        <span class="num">$500</span>
+        <span class="label">I-CAR Level 2 Bonus</span>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3><span class="icon">🎓</span> I-CAR Requirements</h3>
+        <ul>
+          <li><strong>Year 1:</strong> Obtain and maintain I-CAR Pro Level 1 certification</li>
+          <li><strong>Year 2:</strong> Obtain and maintain I-CAR Pro Level 2 certification</li>
+          <li>Completing Pro Level 2 earns a <strong>$500 bonus</strong></li>
+          <li><strong>Additional training</strong> from vendors and/or manufacturers may also be required</li>
+          <li>Failing to meet milestones may result in probation, suspension, or termination</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon">📚</span> Training Policy</h3>
+        <ul>
+          <li>All courses must be approved by your supervisor in advance</li>
+          <li>KAB provides a <strong>$500/year credit</strong> toward approved training</li>
+          <li>Courses not successfully completed must be retaken <strong>at your own expense</strong></li>
+          <li>Any outstanding training balance is due upon termination or resignation</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="icon">📅</span> Team Meetings</h3>
+        <ul>
+          <li><strong>Monthly Production Meetings:</strong> 1st Friday of every month — mandatory for production team</li>
+          <li><strong>Quarterly All-Hands:</strong> Month after quarter-end, after hours, dinner provided — optional and unpaid</li>
+          <li>Policy changes from quarterly meetings posted in the break room or available on request</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <div class="section-header">
+      <h2>Who to Contact</h2>
+      <span>HR · Finance · Ownership</span>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="role">HR</div>
+        <div class="name">Alicia Pham</div>
+        <a href="tel:4082947633">408-294-7633</a>
+        <a href="mailto:office@kabsc.com">office@kabsc.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="role">Finance</div>
+        <div class="name">Jenny</div>
+        <a href="tel:4082947633">408-294-7633</a>
+        <a href="mailto:office@kabsc.com">office@kabsc.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="role">Owner / Safety Reports</div>
+        <div class="name">James Kim</div>
+        <a href="tel:4082947633">408-294-7633</a>
+        <a href="mailto:james@kabsc.com">james@kabsc.com</a>
+      </div>
+    </div>
+
+    <div class="alert alert-info" style="margin-top:16px;">
+      <strong>Questions not covered here?</strong> Always reach out to your direct supervisor first. For HR, benefits, or policy questions contact Alicia. For payroll or Finance questions contact Jenny. For safety concerns or to report a violation, you may go directly to James Kim.
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>
