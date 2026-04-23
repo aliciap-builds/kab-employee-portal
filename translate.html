@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAB Portal — Language Selector</title>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Text:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1a1a1a; --border: #e0e0e0; --bg: #f8f8f8;
+    --card: #ffffff; --muted: #888; --blue: #1a56a0; --blue-light: #eef3fc;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); font-family: 'Google Sans Text','Roboto',Arial,sans-serif; font-size: 14px; color: var(--black); min-height: 100vh; display: flex; flex-direction: column; }
+
+  header { background: var(--black); padding: 16px 32px; display: flex; align-items: center; gap: 12px; }
+  .logo { background: white; color: var(--black); font-family: 'Google Sans',Arial,sans-serif; font-weight: 700; font-size: 13px; padding: 4px 8px; flex-shrink: 0; }
+  .header-title { color: white; font-family: 'Google Sans',Arial,sans-serif; font-size: 15px; font-weight: 500; }
+
+  main { flex: 1; max-width: 680px; margin: 0 auto; padding: 48px 24px 80px; width: 100%; }
+
+  .intro { text-align: center; margin-bottom: 36px; }
+  .intro h1 { font-family: 'Google Sans',Arial,sans-serif; font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .intro p { color: var(--muted); font-size: 14px; }
+
+  .notice { background: var(--blue-light); border: 1px solid #aac4e8; border-radius: 8px; padding: 14px 16px; font-size: 13px; color: #0d3a70; margin-bottom: 28px; line-height: 1.55; }
+  .notice strong { font-weight: 600; }
+
+  .section-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+  .section-card h2 { font-family: 'Google Sans',Arial,sans-serif; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); padding: 18px 24px 14px; border-bottom: 1px solid var(--border); }
+
+  .lang-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap: 10px; padding: 18px; }
+  .lang-btn { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 2px solid var(--border); border-radius: 8px; background: white; cursor: pointer; font-family: 'Google Sans',Arial,sans-serif; font-size: 14px; font-weight: 500; color: var(--black); transition: all 0.15s; }
+  .lang-btn:hover { border-color: var(--black); background: #fafafa; }
+  .lang-btn.selected { border-color: var(--black); background: var(--black); color: white; }
+  .lang-btn .flag { font-size: 20px; line-height: 1; }
+  .lang-name { display: flex; flex-direction: column; gap: 1px; }
+  .lang-name span:last-child { font-size: 11px; font-weight: 400; opacity: 0.6; }
+
+  .page-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 24px; border-bottom: 1px solid var(--border); gap: 12px; }
+  .page-row:last-child { border-bottom: none; }
+  .page-info { display: flex; align-items: center; gap: 12px; }
+  .page-icon { width: 32px; height: 32px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .page-name { font-family: 'Google Sans',Arial,sans-serif; font-weight: 600; font-size: 14px; }
+  .page-desc { font-size: 12px; color: var(--muted); margin-top: 1px; }
+  .open-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; background: var(--black); color: white; border: none; border-radius: 6px; font-family: 'Google Sans',Arial,sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; flex-shrink: 0; }
+  .open-btn:hover { opacity: 0.82; }
+  .open-btn svg { width: 13px; height: 13px; fill: white; }
+
+  .open-all-btn { width: 100%; padding: 14px; background: var(--black); color: white; border: none; border-radius: 8px; font-family: 'Google Sans',Arial,sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .open-all-btn:hover { opacity: 0.82; }
+  .open-all-btn svg { width: 16px; height: 16px; fill: white; }
+
+  @media (max-width: 520px) {
+    main { padding: 28px 16px 60px; }
+    header { padding: 14px 16px; }
+    .lang-grid { padding: 14px; }
+    .page-row { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">K/B</div>
+  <div class="header-title">Kims Auto Body — Language Selector</div>
+</header>
+
+<main>
+  <div class="intro">
+    <h1>🌐 Choose Your Language</h1>
+    <p>Select a language, then open any page of the employee portal translated.</p>
+  </div>
+
+  <div class="notice">
+    <strong>How it works:</strong> Pick your language, then click <strong>Open</strong> next to any page. It opens in a new tab via Google Translate. For official policy details, the English version is always the authoritative source.
+  </div>
+
+  <div class="section-card">
+    <h2>Select Language / Seleccionar Idioma</h2>
+    <div class="lang-grid" id="lang-grid"></div>
+  </div>
+
+  <div class="section-card">
+    <h2>Portal Pages</h2>
+    <div id="page-list"></div>
+  </div>
+
+  <button class="open-all-btn" onclick="openAll()">
+    <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+    Open All Pages in Selected Language
+  </button>
+</main>
+
+<script>
+
+// ================================================================
+//  ✏️  ADD OR REMOVE PORTAL PAGES HERE
+//  When you add a new Google Site page, just add a new entry.
+//  icon  = any emoji
+//  name  = what shows on the button
+//  desc  = short description shown in grey
+//  url   = full URL of the page
+// ================================================================
+const PAGES = [
+  {
+    icon: "🏠",
+    name: "Home",
+    desc: "Announcements, training deadlines, shared drive",
+    url:  "https://sites.google.com/kabsc.com/company-wide-portal/home"
+  },
+  {
+    icon: "🏖",
+    name: "Time Off",
+    desc: "PTO accrual, requests, FAQ",
+    url:  "https://sites.google.com/kabsc.com/company-wide-portal/policy-reference/time-off"
+  },
+  {
+    icon: "📋",
+    name: "Submit a Request",
+    desc: "Forms and submissions",
+    url:  "https://sites.google.com/kabsc.com/company-wide-portal/submit-a-request"
+  },
+  {
+    icon: "📖",
+    name: "Policy Reference",
+    desc: "Handbook quick reference guide",
+    url:  "https://aliciap-builds.github.io/kab-employee-portal/"
+  },
+  // ── ADD NEW PAGES BELOW THIS LINE ──────────────────────────
+  // Copy and paste one of the entries above, change the values,
+  // and save the file. The new page will appear automatically.
+  //
+  // Example:
+  // {
+  //   icon: "📄",
+  //   name: "New Page Name",
+  //   desc: "Short description of the page",
+  //   url:  "https://sites.google.com/kabsc.com/company-wide-portal/your-new-page"
+  // },
+];
+
+// ================================================================
+//  ✏️  ADD OR REMOVE LANGUAGES HERE (optional)
+//  code = Google Translate language code
+// ================================================================
+const LANGUAGES = [
+  { code: "en",    native: "English",    label: "English",     flag: "🇺🇸" },
+  { code: "es",    native: "Español",    label: "Spanish",     flag: "🇲🇽" },
+  { code: "zh-CN", native: "中文",        label: "Chinese",     flag: "🇨🇳" },
+  { code: "vi",    native: "Tiếng Việt", label: "Vietnamese",  flag: "🇻🇳" },
+  { code: "ko",    native: "한국어",       label: "Korean",      flag: "🇰🇷" },
+  { code: "tl",    native: "Filipino",   label: "Tagalog",     flag: "🇵🇭" },
+];
+
+// ================================================================
+//  🔧  Everything below runs automatically. No need to edit.
+// ================================================================
+
+let currentLang = "en";
+
+// Build language buttons
+const langGrid = document.getElementById("lang-grid");
+LANGUAGES.forEach((lang, i) => {
+  const btn = document.createElement("button");
+  btn.className = "lang-btn" + (i === 0 ? " selected" : "");
+  btn.innerHTML = `
+    <span class="flag">${lang.flag}</span>
+    <div class="lang-name">
+      <span>${lang.native}</span>
+      <span>${lang.label}</span>
+    </div>`;
+  btn.onclick = () => {
+    currentLang = lang.code;
+    document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("selected"));
+    btn.classList.add("selected");
+  };
+  langGrid.appendChild(btn);
+});
+
+// Build page rows
+const pageList = document.getElementById("page-list");
+PAGES.forEach(page => {
+  const row = document.createElement("div");
+  row.className = "page-row";
+  row.innerHTML = `
+    <div class="page-info">
+      <div class="page-icon">${page.icon}</div>
+      <div>
+        <div class="page-name">${page.name}</div>
+        <div class="page-desc">${page.desc}</div>
+      </div>
+    </div>
+    <button class="open-btn" onclick="openPage('${page.url}')">
+      <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+      Open
+    </button>`;
+  pageList.appendChild(row);
+});
+
+function translateUrl(url) {
+  if (currentLang === "en") return url;
+  return `https://translate.google.com/translate?hl=${currentLang}&sl=en&tl=${currentLang}&u=${encodeURIComponent(url)}`;
+}
+
+function openPage(url) {
+  window.open(translateUrl(url), "_blank");
+}
+
+function openAll() {
+  PAGES.forEach((page, i) => {
+    setTimeout(() => window.open(translateUrl(page.url), "_blank"), i * 300);
+  });
+}
+
+</script>
+</body>
+</html>
